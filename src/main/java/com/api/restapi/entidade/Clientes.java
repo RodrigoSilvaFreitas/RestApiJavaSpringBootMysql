@@ -18,11 +18,15 @@ public class Clientes {
     @Column(nullable = false)
     private String nome;
     @Column(nullable = false)
-    private String cpf;
+    public static String cpf;
     @Column(nullable = false)
     private String email;
     @Column(nullable = false)
     private String telefone;
     @Column(nullable = false)
     private String endereco;
+
+    public static Object getcpf() {
+        return null;
+    }
 }

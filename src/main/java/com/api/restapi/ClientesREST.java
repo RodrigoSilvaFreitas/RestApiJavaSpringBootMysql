@@ -1,10 +1,7 @@
 package com.api.restapi;
 
 import com.api.restapi.entidade.Clientes;
-import com.database.RepositorioClientes;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,30 +12,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("/service")
 public class ClientesREST {
-    @Autowired    
-    private RepositorioClientes repositorio;
+    @Autowired
+    private ClienteService service;
 
     @GetMapping
-    public List<Clientes>listar(){
-        return repositorio.findAll();
+    public List<Clientes> findAll(Clientes cliente) {
+        return service.findAll(cliente);
     }
 
     @PostMapping
-    public void salvar(@RequestBody Clientes clientes){
-        repositorio.save(clientes);
+    public void create(@RequestBody Clientes clientes) {
+        service.create(clientes);
     }
-  
+
     @PutMapping
-    public void alterar(@RequestBody Clientes clientes){
-        if(clientes.getId()>0)
-        repositorio.save(clientes);
+    public void save(@RequestBody Clientes clientes) {
+        service.save(clientes);
     }
 
     @DeleteMapping
-    public void excluir(@RequestBody Clientes clientes){
-        repositorio.delete(clientes);
+    public void delete(@RequestBody Clientes clientes) {
+        service.delete(clientes);
     }
 }
-
